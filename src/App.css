@@ -1,0 +1,91 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+header {
+  background: linear-gradient(92.33deg, #196b78 0.12%,#138496 100%);
+  
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+
+h1 {
+  font-size: 72px;
+  color: #CCF8FF;
+}
+
+.desc {
+  font-size: 21px;
+  color: #CCF8FF;
+}
+
+input {
+  position: absolute;
+  bottom: -32px;
+
+  width: 820px;
+  height: 64px;
+  max-width: 90%;
+  padding-left: 32px;
+  font-size: 24px;
+
+  &::placeholder {
+    color: #ABB5BE;
+  }
+}
+}
+
+main {
+
+  background-color: #edeef3;
+  min-height: 80vh;
+
+  .container {
+    width: 1000px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 80px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  
+    .card {
+      width: 316px;
+      height: 184px;
+      border-radius: 4px;
+      border-width: 1px solid #dee2e6;
+      border: 1px solid #dee2e6;
+      background-color: white;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+
+      .emoji {
+        font-size: 48px;
+      }
+
+      .title {
+        font-size: 17px;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      .keywords {
+        font-size: 12px;
+        color: #3f444a;
+      }
+
+    }
+  }
+
+
+}
