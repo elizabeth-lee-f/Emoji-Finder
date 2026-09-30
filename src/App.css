@@ -1,91 +1,115 @@
-*{
+/* src/App.css */
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-
 header {
-  background: linear-gradient(92.33deg, #196b78 0.12%,#138496 100%);
-  
+  background: linear-gradient(92.33deg, #196b78 0.12%, #138496 100%);
   display: flex;
   flex-direction: column;
   gap: 12px;
   justify-content: center;
   align-items: center;
+  padding: 60px 20px 80px;
+}
 
 h1 {
   font-size: 72px;
-  color: #CCF8FF;
+  color: #ccf8ff;
+  text-align: center;
 }
 
 .desc {
   font-size: 21px;
-  color: #CCF8FF;
+  color: #ccf8ff;
+  text-align: center;
 }
 
 input {
-  position: absolute;
-  bottom: -32px;
-
   width: 820px;
-  height: 64px;
   max-width: 90%;
+  height: 64px;
   padding-left: 32px;
   font-size: 24px;
-
-  &::placeholder {
-    color: #ABB5BE;
-  }
+  border-radius: 32px;
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
+
+input::placeholder {
+  color: #abb5be;
 }
 
 main {
-
   background-color: #edeef3;
   min-height: 80vh;
+  padding-bottom: 60px;
+}
 
-  .container {
-    width: 1000px;
-    max-width: 90%;
-    margin: 0 auto;
-    padding: 80px;
+.container {
+  width: 1000px;
+  max-width: 90%;
+  margin: 0 auto;
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.card {
+  height: 184px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  background-color: white;
   
-    .card {
-      width: 316px;
-      height: 184px;
-      border-radius: 4px;
-      border-width: 1px solid #dee2e6;
-      border: 1px solid #dee2e6;
-      background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 18px;
-      text-align: center;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
 
-      .emoji {
-        font-size: 48px;
-      }
+.emoji {
+  font-size: 48px;
+  line-height: 1;
+}
 
-      .title {
-        font-size: 17px;
-        font-weight: bold;
-        text-decoration: underline;
-      }
+.title {
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 
-      .keywords {
-        font-size: 12px;
-        color: #3f444a;
-      }
+.keywords {
+  font-size: 12px;
+  color: #6c757d;
+  padding: 0 16px;
+  line-height: 1.4;
+}
 
-    }
-  }
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 24px;
+  color: #6c757d;
+  padding: 60px 0;
+}
 
-
+@media (max-width: 600px) {
+  h1 { font-size: 48px; }
+  .desc { font-size: 16px; }
+  input { height: 56px; font-size: 18px; }
 }
