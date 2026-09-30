@@ -1,15 +1,16 @@
-import type { EmojiItem } from '../data/emojis'
+// src/components/Card.tsx
+import type { EmojiData } from '../services/emojiService'
 
 interface CardProps {
-  emoji: EmojiItem;
+  emoji: EmojiData;
 }
 
 function Card({ emoji }: CardProps) {
   return (
     <div className="card">
-      <p className="emoji">{emoji.symbol}</p>
+      <p className="emoji-symbol">{emoji.emoji}</p> 
       <p className="title">{emoji.title}</p>
-      <p className="keywords">{emoji.keywords.join(', ')}</p>
+      <p className="keywords">{emoji.keywords}</p>
     </div>
   );
 }

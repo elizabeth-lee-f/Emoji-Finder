@@ -1,48 +1,59 @@
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Card from './components/Card'
-import { EMOJIS } from './data/emojis'
+import { emojiService, type EmojiData } from './services/emojiService' 
 import './App.css'
 
 function App() {
   const [input, setInput] = useState('')
+  const [allEmojis, setAllEmojis] = useState<EmojiData[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    emojiService.getAll()
+      .then(data => setAllEmojis(data))
+      .catch(() => setError('Не удалось загрузить эмодзи'))
+      .finally(() => setLoading(false))
+  }, [])
 
   const filteredEmojis = useMemo(() => {
-    if (!input.trim()) return EMOJIS;
-    
+    if (!input.trim()) return allEmojis;
     const lowerInput = input.toLowerCase();
-    return EMOJIS.filter((emoji) =>
-      emoji.keywords.some((keyword) => keyword.includes(lowerInput))
+    
+    return allEmojis.filter(item => 
+      item.title.toLowerCase().includes(lowerInput) || 
+      item.keywords.toLowerCase().includes(lowerInput)
     );
-  }, [input]);
+  }, [input, allEmojis]);
+
+  if (loading) return <div className="loader">Загрузка...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
     <>
       <header>
         <h1>Emoji Finder</h1>
-        <p className="desc">Find emoji by keywords</p>
-        
+        <p className="desc">Интеграция с API</p>
         <input
-          placeholder="Enter here..."
-          type="text"
+          placeholder="Поиск..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          aria-label="Search emojis"
         />
       </header>
 
       <main>
         <div className="container">
           {filteredEmojis.length > 0 ? (
-            filteredEmojis.map((emoji) => (
-              <Card key={emoji.title} emoji={emoji} />
+            filteredEmojis.map((item, idx) => (
+              <Card key={idx} emoji={item} />
             ))
           ) : (
-            <p className="no-results">No emojis found for "{input}"</p>
+            <p className="no-results">Ничего не найдено</p>
           )}
         </div>
       </main>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
